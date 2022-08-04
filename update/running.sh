@@ -1,7 +1,7 @@
 #!/bin/bash
 MYIP=$(curl -sS ipv4.icanhazip.com)
 #########################
-IZIN=$(curl -sS https://raw.githubusercontent.com/fsidvpn/perizinan/main/main/allow | awk '{print $4}' | grep $MYIP)
+IZIN=$(curl -sS https://raw.githubusercontent.com/Newbie2555/izin/main/main/allow | awk '{print $4}' | grep $MYIP)
 if [ $MYIP = $IZIN ]; then
 echo -e "\e[32mPermission Accepted...\e[0m"
 else
@@ -10,20 +10,20 @@ echo -e "\e[31mDaftar IP dalam github lok sayang okay? mun dah daftar tapi masih
 exit 0
 fi
 #EXPIRED
-expired=$(curl -sS https://raw.githubusercontent.com/fsidvpn/perizinan/main/main/allow | grep $MYIP | awk '{print $3}')
+expired=$(curl -sS https://raw.githubusercontent.com/Newbie2555/izin/main/main/allow | grep $MYIP | awk '{print $3}')
 echo $expired > /root/expired.txt
 today=$(date -d +1day +%Y-%m-%d)
 while read expired
 do
-	exp=$(echo $expired | curl -sS https://raw.githubusercontent.com/fsidvpn/perizinan/main/main/allow | grep $MYIP | awk '{print $3}')
+	exp=$(echo $expired | curl -sS https://raw.githubusercontent.com/Newbie2555/izin/main/main/allow | grep $MYIP | awk '{print $3}')
 	if [[ $exp < $today ]]; then
 		Exp2="\033[1;31mExpired\033[0m"
         else
-        Exp2=$(curl -sS https://raw.githubusercontent.com/fsidvpn/perizinan/main/main/allow | grep $MYIP | awk '{print $3}')
+        Exp2=$(curl -sS https://raw.githubusercontent.com/Newbie2555/izin/main/main/allow | grep $MYIP | awk '{print $3}')
 	fi
 done < /root/expired.txt
 rm /root/expired.txt
-Name=$(curl -sS https://raw.githubusercontent.com/fsidvpn/perizinan/main/main/allow | grep $MYIP | awk '{print $2}')
+Name=$(curl -sS https://raw.githubusercontent.com/Newbie2555/izin/main/main/allow | grep $MYIP | awk '{print $2}')
 # GETTING OS INFORMATION
 source /etc/os-release
 Versi_OS=$VERSION
